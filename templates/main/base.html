@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e7e7e7;
+            padding: 8px 16px;
+        }
+        nav a, nav form {
+            margin-right: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        nav form {
+            display: inline;
+        }
+        .content {
+            padding: 16px;
+            margin: 16px;
+        }
+    </style>
+    {% block extra_styles %}
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_book' %}">Add Book</a>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <a href="{% url 'api-get-routes' %}">API</a>
+                <button type="submit">Logout</button>
+                
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}
+
+{% block extra_styles %}
+<style>
+    .book-details {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .book-details h1 {
+        color: #007bff; 
+        margin-bottom: 20px;
+        font-size: 28px; 
+    }
+
+    .book-details p {
+        font-size: 18px; 
+        color: #333; 
+        margin-bottom: 10px;
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="book-details">
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Year: {{ book.year }}</p>
+    <p>Rating: {{ book.rating }}</p>
+    <p>Description: {{ book.description }}</p>
+
+    <a href="{% url 'index' %}" class="back-button">Back to Main</a>
+</div>
+{% endblock %}
